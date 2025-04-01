@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CoffeeService } from '../coffee.service';
 import { Record } from '../models/record';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-coffee-list',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './coffee-list.component.html',
   styleUrl: './coffee-list.component.css'
 })
