@@ -12,6 +12,7 @@ public interface ICoffeeRepository
     CoffeeRecord GetById(int id);
     void Add(CoffeeRecord record);
     void Delete(int id);
+    void Update(CoffeeRecord record);
 }
 
 public class CoffeeRepository: ICoffeeRepository
@@ -64,6 +65,16 @@ public class CoffeeRepository: ICoffeeRepository
             var sql =
                 @"DELETE FROM records WHERE Id = @id";
             connection.Execute(sql, new { id });
+        }
+    }
+
+    public void Update(CoffeeRecord record)
+    {
+        using (IDbConnection connection = new SqliteConnection(_config.GetConnectionString("ConnectionString")))
+        {
+            var sql =
+                "UPDATE records SET Type = @Type, Bean = @Bean, Location = @Location, DateCreated = @DateCreated, Score = @Score, NumShots = @NumShots, Price = @Price WHERE Id = @Id";
+            connection.Execute(sql, record);
         }
     }
 }

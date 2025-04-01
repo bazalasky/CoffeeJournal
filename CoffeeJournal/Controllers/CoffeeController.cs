@@ -58,4 +58,19 @@ public class CoffeeController : ControllerBase
 
         return Ok(new { Success = true });
     }
+    
+    [HttpPut]
+    public IActionResult UpdateRecord(CoffeeRecord record)
+    {
+        try
+        {
+            _coffeeRepository.Update(record);
+        }
+        catch
+        {
+            return Ok(new { Success = false }); ;
+        }
+
+        return Ok(new { Success = true });
+    }
 }
